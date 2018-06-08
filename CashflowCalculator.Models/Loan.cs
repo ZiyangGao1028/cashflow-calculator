@@ -12,6 +12,8 @@ namespace CashflowCalculator.Models
         //public int GetDuration() { return _duration; }
         //public void SetDuration (int duration ) { _duration = duration; }
         //The code above gets generated at compile time from the code below.
+        public int Id { get; set; }
+
         public int Duration { get; set; }
 
         public decimal Amount { get; set; }

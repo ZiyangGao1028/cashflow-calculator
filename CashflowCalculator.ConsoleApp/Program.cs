@@ -5,19 +5,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using CashflowCalculator.DAL.Service;
+
 
 namespace CashflowCalculator.ConsoleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             int indication = 1;
             List<List<CashflowRow>> fullList = new List<List<CashflowRow>>();
-            
+            Loan loan = new Loan();
+
             while (indication > 0)
             {
-                Loan loan = new Loan();
+                
                 Console.Write("Please enter in your loan amount: ");
                 string amount1 = Console.ReadLine();
                 loan.Amount = decimal.Parse(amount1);
@@ -30,8 +34,10 @@ namespace CashflowCalculator.ConsoleApp
                 string r1 = Console.ReadLine();
                 loan.Rate = decimal.Parse(r1);
 
+                LoanService.AddLoan(loan);
+
                 List<CashflowRow> flowList = Calculator.CalculateCashflow(loan);
-                fullList.Add(flowList);
+                fullList.Add(flowList); 
                 
                 int length = flowList.Count;
                 Console.WriteLine("Month\t\tInterest\tPrincipal\tRemaining Balance");
@@ -41,13 +47,16 @@ namespace CashflowCalculator.ConsoleApp
                         Math.Round(flowList[i].PrincipalPayment, 2) + "\t\t" + Math.Round(flowList[i].RemainingBalance, 2));
                 }
 
-                Console.Write("Would you want to enter anoother one? yes(1)/no(0)");
+                Console.Write("Would you want to enter another one? yes(1)/no(0)");
                 indication = int.Parse(Console.ReadLine());
+
+               
             }
 
-            int maxMonth = fullList.Max(x => x.Count);
+            int numLoan = fullList.Max(x => x.Count);
+
             List<CashflowRow> pool = new List<CashflowRow>();
-            for (var i = 0; i < maxMonth; ++i)
+            for (var i = 0; i < numLoan; ++i)
             {
                 CashflowRow cashflowRow = new CashflowRow();
                 cashflowRow.Month = i + 1;

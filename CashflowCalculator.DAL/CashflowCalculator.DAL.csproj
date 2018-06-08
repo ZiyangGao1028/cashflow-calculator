@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F37BC5D-0C52-4F60-B82E-43A161185219}</ProjectGuid>
+    <ProjectGuid>{53F44BAB-4CB7-4B48-8F50-836CBDD15650}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CashflowCalculator.ConsoleApp</RootNamespace>
-    <AssemblyName>CashflowCalculator.ConsoleApp</AssemblyName>
+    <RootNamespace>CashflowCalculator.DAL</RootNamespace>
+    <AssemblyName>CashflowCalculator.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -49,6 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoanContext.cs" />
+    <Compile Include="LoanService.cs" />
+    <Compile Include="Migrations\201806082200530_InitialMigrations.cs" />
+    <Compile Include="Migrations\201806082200530_InitialMigrations.Designer.cs">
+      <DependentUpon>201806082200530_InitialMigrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\InitialMigration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,10 +65,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CashflowCalculator.DAL\CashflowCalculator.DAL.csproj">
-      <Project>{53F44BAB-4CB7-4B48-8F50-836CBDD15650}</Project>
-      <Name>CashflowCalculator.DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CashflowCalculator.Models\CashflowCalculator.Models.csproj">
       <Project>{ef0d0f73-3352-46ef-a566-b86fa89e9771}</Project>
       <Name>CashflowCalculator.Models</Name>
@@ -69,6 +73,11 @@
       <Project>{cd662bd0-112f-4d8e-82c3-adf252da3135}</Project>
       <Name>CashflowCalculator</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806082200530_InitialMigrations.resx">
+      <DependentUpon>201806082200530_InitialMigrations.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
