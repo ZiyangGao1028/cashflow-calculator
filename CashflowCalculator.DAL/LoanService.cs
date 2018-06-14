@@ -28,24 +28,24 @@ namespace CashflowCalculator.DAL.Service
             }
         }
 
-        //public static List<Loan> GetLoans()
+        public static List<Loan> GetLoans()
 
-        //{
-        //    try
-        //    {
-        //        using (var context = new LoanContext())
-        //        {
-        //            return context.Loans.ToList();
-        //        }
-        //    }
+        {
+            try
+            {
+                using (var context = new LoanContext())
+                {
+                    return context.Loans.ToList();
+                }
+            }
 
-        //    catch (Exception e)
-        //    {
-        //        Console.Write(e);
-        //        return null;
-        //    }
+            catch (Exception e)
+            {
+                Console.Write(e);
+                return null;
+            }
 
-        //}
+        }
 
         //public static int DeleteLoans(List<int> ids)
 

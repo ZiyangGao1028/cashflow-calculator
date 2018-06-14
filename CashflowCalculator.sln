@@ -18,9 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashflowCalculator.DAL", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashflowCalculator.API", "CashflowCalculator.API\CashflowCalculator.API.csproj", "{8DCB2AB7-2864-4ED6-8BDC-3B8974CC3DBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashflowCalculator.GUI", "CashflowCalculator.GUI\CashflowCalculator.GUI.csproj", "{4C6BCA85-4C52-44F4-B492-FE3A71D9E55C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{75F8D822-FD74-4801-9DE0-C335FBB53C42}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashflowCalculator.WebApplication1", "WebApplication1\CashflowCalculator.WebApplication1.csproj", "{75F8D822-FD74-4801-9DE0-C335FBB53C42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,10 +46,6 @@ Global
 		{8DCB2AB7-2864-4ED6-8BDC-3B8974CC3DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DCB2AB7-2864-4ED6-8BDC-3B8974CC3DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DCB2AB7-2864-4ED6-8BDC-3B8974CC3DBD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C6BCA85-4C52-44F4-B492-FE3A71D9E55C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C6BCA85-4C52-44F4-B492-FE3A71D9E55C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C6BCA85-4C52-44F4-B492-FE3A71D9E55C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C6BCA85-4C52-44F4-B492-FE3A71D9E55C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75F8D822-FD74-4801-9DE0-C335FBB53C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75F8D822-FD74-4801-9DE0-C335FBB53C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75F8D822-FD74-4801-9DE0-C335FBB53C42}.Release|Any CPU.ActiveCfg = Release|Any CPU

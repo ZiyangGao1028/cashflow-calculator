@@ -1,29 +1,48 @@
-﻿<!doctype html>
-<html ng-app="todoApp">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="utf-8" />
+    <title>Cashflow Calculator</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
-    <script src="todo.js"></script>
-    <link rel="stylesheet" href="todo.css">
+    <script src="app.module.js"></script>
 </head>
-<body>
-    <h2>Todo</h2>
-    <div ng-controller="TodoListController as todoList">
-        <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
-        [ <a href="" ng-click="todoList.archive()">archive</a> ]
-        <ul class="unstyled">
-            <li ng-repeat="todo in todoList.todos">
-                <label class="checkbox">
-                    <input type="checkbox" ng-model="todo.done">
-                    <span class="done-{{todo.done}}">{{todo.text}}</span>
-                </label>
-            </li>
-        </ul>
-        <form ng-submit="todoList.addTodo()">
-            <input type="text" ng-model="todoList.todoText" size="30"
-                   placeholder="add new todo here">
-            <input class="btn-primary" type="submit" value="add">
-        </form>
+
+<body id="main" ng-app="cashflowCalculatorApp" ng-controller="LoanController as model">
+
+    <div data-ng-init="">
+        <button class="btn btn-success" ng-click="model.clearText()">Enter Loan</button>
+        
+        <div collapse="!submitCollapsed">
+            <form ng-submit="model.addLoan()">
+                <input type="text" id="text1" placeholder="Amount" required ng-model="model.loan.Amount" />
+                <input type="text" id="text2" placeholder="Duration" required ng-model="model.loan.Duration" />
+                <input type="text" id="text3" placeholder="Rate" required ng-model="model.loan.Rate" />
+                <button class="btn btn-success" type="submit" >Submit</button> 
+            </form>
+        </div>
+        <div>
+            <form ng-submit="model.getLoans()">
+                <table class="table">
+                    <tr>
+                        <th></th>
+                        <th>Amount</th>
+                        <th>Duration</th>
+                        <th>Rate</th>
+                    </tr>
+                    <tr ng-repeat="loan in model.loans">
+                        <td><input type="checkbox" ng-model="loan.isChecked"></td>
+                        <td>{{loan.Amount | currency}}</td>
+                        <td>{{loan.Duration}}</td>
+                        <td>{{loan.Rate | number:2}}%</td>
+                    </tr>
+                </table>
+                <button class="btn btn-success" ng-click="loansCollapsed = !loansCollapsed" type="submit">Get Loans</button>
+            </form>
+        </div>
     </div>
 
+
 </body>
+
 </html>
+

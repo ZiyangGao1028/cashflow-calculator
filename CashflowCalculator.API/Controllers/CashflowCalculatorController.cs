@@ -37,5 +37,18 @@ namespace CashflowCalculator.API.Controllers
                 return BadRequest("Unable to save loan");
         }
 
+        [HttpGet]
+        public IHttpActionResult GetLoans()
+        {
+            var loans = DAL.Service.LoanService.GetLoans();
+            if (loans == null)
+            {
+                return BadRequest("Unable to retrieve loans");
+            }
+
+            return Ok(loans);
+        }
+
+
     }
 }
