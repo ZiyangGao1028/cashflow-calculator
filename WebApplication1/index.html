@@ -9,15 +9,15 @@
 
 <body id="main" ng-app="cashflowCalculatorApp" ng-controller="LoanController as model">
 
+    <!-- The loan layer -->
     <div data-ng-init="">
         <button class="btn btn-success" ng-click="model.clearText()">Enter Loan</button>
-        
         <div collapse="!submitCollapsed">
             <form ng-submit="model.addLoan()">
                 <input type="text" id="text1" placeholder="Amount" required ng-model="model.loan.Amount" />
                 <input type="text" id="text2" placeholder="Duration" required ng-model="model.loan.Duration" />
                 <input type="text" id="text3" placeholder="Rate" required ng-model="model.loan.Rate" />
-                <button class="btn btn-success" type="submit" >Submit</button> 
+                <button class="btn btn-success" type="submit">Submit</button>
             </form>
         </div>
         <div>
@@ -39,8 +39,36 @@
                 <button class="btn btn-success" ng-click="loansCollapsed = !loansCollapsed" type="submit">Get Loans</button>
             </form>
         </div>
+
+        <div collapse="!loansCollapsed">
+            <form ng-submit="model.deleteLoans()">
+                <button style="float: right" class="btn btn-success" type="submit">Delete</button>
+                
+            </form>
+        </div>
     </div>
 
+    <!-- The cashflow generator layer -->
+    <div>
+        <button class="btn btn-success" ng-click="model.GetCashFlows()">Get Cashflows</button>
+        <div ng-repeat="unitflow in model.cashflows">
+            <h3 ng-show="$last">Pool</h3>
+            <table class="table">
+                <tr>
+                    <th>Month</th>
+                    <th>Interest</th>
+                    <th>Principal</th>
+                    <th>Remaining Balance</th>
+                </tr>
+                <tr ng-repeat="monthlyPayment in unitflow.Unit">
+                    <td>{{monthlyPayment.Month}}</td>
+                    <td>{{monthlyPayment.InterestPayment | number:2}}%</td>
+                    <td>{{monthlyPayment.PrincipalPayment | currency}}</td>
+                    <td>{{monthlyPayment.RemainingBalance | currency}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
 </body>
 

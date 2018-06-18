@@ -13,6 +13,8 @@ using CashflowCalculator.DAL;
 namespace CashflowCalculator.API.Controllers
 {
     [EnableCors("*", "*", "*")]
+
+
     public class CashflowCalculatorController : ApiController
     {
         Loan[] loans = new Loan[]
@@ -49,6 +51,27 @@ namespace CashflowCalculator.API.Controllers
             return Ok(loans);
         }
 
+        [HttpGet]
+        public IHttpActionResult GetCashFlows()
+        {
+            var cashflows = DAL.Service.CashflowService.GetCashFlows();  
+            if (cashflows == null)
+            {
+                return BadRequest("Unable to retrieve cashflows");
+            }
+
+            return Ok(cashflows);
+        }
+
+        [HttpPost]
+        public IHttpActionResult deleteLoans([FromBody] List<int> loans)
+        {
+            var id = DAL.Service.LoanService.deleteLoans(loans);
+            if (0 < id)
+                return Ok(id);
+            else
+                return BadRequest("Unable delete loans");
+        }
 
     }
 }

@@ -47,30 +47,30 @@ namespace CashflowCalculator.DAL.Service
 
         }
 
-        //public static int DeleteLoans(List<int> ids)
+        public static int deleteLoans(List<int> ids)
 
-        //{
-        //    try
-        //    {
-        //        using (var context = new LoanContext())
+        {
+            try
+            {
+                using (var context = new LoanContext())
 
-        //        {
-        //            var loans = context.Loans.Where(x => ids.Contains(x.LoanID));
-        //            foreach (var loan in loans)
-        //            {
-        //                context.Loans.Remove(loan);
-        //            }
-        //            context.SaveChanges();
-        //            return 1;
-        //        }
-        //    }
+                {
+                    var loans = context.Loans.Where(x => ids.Contains(x.Id));
+                    foreach (var loan in loans)
+                    {
+                        context.Loans.Remove(loan);
+                    }
+                    context.SaveChanges();
+                    return 1;
+                }
+            }
 
-        //    catch (Exception e)
+            catch (Exception e)
 
-        //    {
-        //        Console.Write(e);
-        //        return -1;
-        //    }
-        //}
+            {
+                Console.Write(e);
+                return -1;
+            }
+        }
     }
 }

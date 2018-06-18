@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CashflowService.cs" />
     <Compile Include="LoanContext.cs" />
     <Compile Include="LoanService.cs" />
     <Compile Include="Migrations\201806082200530_InitialMigrations.cs" />

@@ -26,12 +26,11 @@ namespace CashflowCalculator
             return PrincipalPay;
         }
 
-        public static List<CashflowRow> CalculateCashflow(Loan loan)
+        public static UnitFlow CalculateCashflow(Loan loan)
         {
-            List<CashflowRow> flowList = new List<CashflowRow>();
+            UnitFlow unitflow = new UnitFlow();
             
-            decimal monthlyPay = MonthlyPayment(loan.Amount, loan.Duration, loan.Rate);
-            Console.WriteLine(monthlyPay);          
+            decimal monthlyPay = MonthlyPayment(loan.Amount, loan.Duration, loan.Rate);          
             decimal RemainingBalance = loan.Amount;
 
             for (int month = 1; month <= loan.Duration; month++)
@@ -44,11 +43,42 @@ namespace CashflowCalculator
                 flowRow.InterestPayment = InterestCalc(loan.Rate, flowRow.RemainingBalance);
                 flowRow.PrincipalPayment = PrincipalPay(monthlyPay, flowRow.InterestPayment);
                 flowRow.RemainingBalance = flowRow.RemainingBalance - flowRow.PrincipalPayment;
-                flowList.Add(flowRow);
+                unitflow.Unit.Add(flowRow);
 
                 RemainingBalance = flowRow.RemainingBalance;
             }
-            return flowList; 
+            return unitflow; 
+        }
+
+        public static UnitFlow CalculatePoolCashflow(List<UnitFlow> unitflows)
+        {
+            List<CashflowRow> pool = new List<CashflowRow>();
+            foreach (var cashflow in unitflows)
+            {
+                int x = 0;
+                foreach (var CashflowRow in cashflow.Unit)
+                {
+                    if (x >= pool.Count)
+                    {
+                        pool.Add(new CashflowRow()
+                        {
+                            InterestPayment = CashflowRow.InterestPayment,
+                            PrincipalPayment = CashflowRow.PrincipalPayment,
+                            RemainingBalance = CashflowRow.RemainingBalance,
+                            Month = CashflowRow.Month
+                        });
+
+                    }
+                    else
+                    {
+                        pool[x].InterestPayment += CashflowRow.InterestPayment;
+                        pool[x].PrincipalPayment += CashflowRow.PrincipalPayment;
+                        pool[x].RemainingBalance += CashflowRow.RemainingBalance;
+                    }
+                    x++;
+                }
+            }
+            return new UnitFlow() { Unit = pool };
         }
 
     }
