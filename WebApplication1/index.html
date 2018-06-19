@@ -5,13 +5,23 @@
     <title>Cashflow Calculator</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
     <script src="app.module.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body id="main" ng-app="cashflowCalculatorApp" ng-controller="LoanController as model">
 
     <!-- The loan layer -->
-    <div data-ng-init="">
+    <div class="container">
+    <h1>Cashflow Calculator<br><small class="text-muted">A Project by Ziyang Gao</small></h1>
+    </div>
+    <div data-ng-init="" class="container">
+
         <button class="btn btn-success" ng-click="model.clearText()">Enter Loan</button>
+        <button class="btn btn-success" ng-click="model.getLoans()">Get Loans</button>
+        <button class="btn btn-success" ng-click="model.GetCashFlows()">Get Cashflows</button>
         <div collapse="!submitCollapsed">
             <form ng-submit="model.addLoan()">
                 <input type="text" id="text1" placeholder="Amount" required ng-model="model.loan.Amount" />
@@ -22,7 +32,7 @@
         </div>
         <div>
             <form ng-submit="model.getLoans()">
-                <table class="table">
+                <table class="table table-bordered table-striped">
                     <tr>
                         <th></th>
                         <th>Amount</th>
@@ -36,24 +46,24 @@
                         <td>{{loan.Rate | number:2}}%</td>
                     </tr>
                 </table>
-                <button class="btn btn-success" ng-click="loansCollapsed = !loansCollapsed" type="submit">Get Loans</button>
+
             </form>
         </div>
 
-        <div collapse="!loansCollapsed">
+        <div collapse="!loansCollapsed" class="container">
             <form ng-submit="model.deleteLoans()">
                 <button style="float: right" class="btn btn-success" type="submit">Delete</button>
-                
+
             </form>
         </div>
     </div>
 
     <!-- The cashflow generator layer -->
-    <div>
-        <button class="btn btn-success" ng-click="model.GetCashFlows()">Get Cashflows</button>
+    <div class="container">
+        
         <div ng-repeat="unitflow in model.cashflows">
             <h3 ng-show="$last">Pool</h3>
-            <table class="table">
+            <table class="table table-bordered table-striped">
                 <tr>
                     <th>Month</th>
                     <th>Interest</th>
